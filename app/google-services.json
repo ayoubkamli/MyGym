@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "417162115810",
+    "project_id": "firebase-mygym"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417162115810:android:f425e7ab2de6fa62",
+        "android_client_info": {
+          "package_name": "com.example.luca.mygym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417162115810-lm1i9hpk5eaobo3tc18n4ig4sc59mfo7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.luca.mygym",
+            "certificate_hash": "57f6f034420f36dbb9cb6f4b71067c9b4df6087b"
+          }
+        },
+        {
+          "client_id": "417162115810-eisfinknp17u3ougn1cjqdl8l53okruf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQdF8ABNhNWqFEqVHkjrZoXWjV0K7tCv0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
