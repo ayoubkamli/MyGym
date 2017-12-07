@@ -52,6 +52,11 @@ public class EserciziAdapter extends BaseAdapter implements ListAdapter {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Object obj = list.get(position);
+                String value = obj.toString();
+                Intent intent = new Intent(context, DescrizioneEsercizioActivity.class);
+                intent.putExtra("Esercizio", value);
+                context.startActivity(intent);
             }
         });
 

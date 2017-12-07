@@ -42,7 +42,8 @@
         <activity android:name=".SchedeActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EserciziActivity"></activity>
+        <activity android:name=".EserciziActivity" />
+        <activity android:name=".DescrizioneEsercizioActivity"></activity>
     </application>
 
 </manifest>
