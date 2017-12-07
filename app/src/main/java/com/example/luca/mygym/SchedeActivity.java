@@ -24,8 +24,7 @@ import java.util.Map;
 
 public class SchedeActivity extends AppCompatActivity {
     public static final String PREFS_USR = "PrefsUser";
-
-
+    public static final String SCHEDE_DATA = "SchedeData";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,6 +48,9 @@ public class SchedeActivity extends AppCompatActivity {
                             // Display the first 500 characters of the response string.
                             try {
                                 JSONArray array = new JSONArray(response);
+                                SharedPreferences.Editor editor = getSharedPreferences(SCHEDE_DATA, MODE_PRIVATE).edit();
+                                editor.putString("obj", array.toString());
+                                editor.apply();
 
                                 ArrayList<String> list = new ArrayList<>();
 
@@ -63,11 +65,12 @@ public class SchedeActivity extends AppCompatActivity {
                                 }
 
                                 //instantiate custom adapter
-                                CustomAdapter adapter = new CustomAdapter(list, SchedeActivity.this);
+                                SchedeAdapter adapter = new SchedeAdapter(list, SchedeActivity.this);
 
                                 //handle listview and assign adapter
                                 ListView lView = (ListView) findViewById(R.id.list);
                                 lView.setAdapter(adapter);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Log.i("cazzosi", e.toString());
