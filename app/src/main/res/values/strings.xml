@@ -3,6 +3,10 @@
     <string name="facebook_app_id">338514703291115</string>
     <string name="fb_login_protocol_scheme">fb338514703291115</string>
     <string name="title_activity_schede">SchedeActivity</string>
-    <string name="Description_iv_splash">Tony sta flexando</string>
+    <string name="Description_splash">Un cazzutissimo pitbull</string>
     <string name="Oppure_login">oppure</string>
+    <string name="Profilo">PROFILO</string>
+    <string name="Workout">WORKOUT</string>
+    <string name="Statistiche">STATS</string>
+    <string name="More">MORE</string>
 </resources>

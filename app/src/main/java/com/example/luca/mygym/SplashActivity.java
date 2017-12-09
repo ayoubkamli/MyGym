@@ -1,6 +1,7 @@
 package com.example.luca.mygym;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -19,15 +20,21 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         //Variabile booleana utilizzata per vedere se si è loggati con Facebook
-        boolean loggedInFb;
+        final boolean loggedInFb;
         loggedInFb = isFacebookLoggedIn();
-        if (loggedInFb) {
-            Intent intent = new Intent(SplashActivity.this, SchedeActivity.class);
-            startActivity(intent);
-        } else{
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                if (loggedInFb) {
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else{
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }, 3000);
     }
 
     public boolean isFacebookLoggedIn(){
