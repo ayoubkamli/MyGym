@@ -9,4 +9,10 @@
     <string name="Workout">WORKOUT</string>
     <string name="Statistiche">STATS</string>
     <string name="More">MORE</string>
+    <string name="name">Name:</string>
+    <string name="surname">Surname:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="gender">Gender:</string>
+    <string name="height">Height:</string>
+    <string name="weight">Weight:</string>
 </resources>

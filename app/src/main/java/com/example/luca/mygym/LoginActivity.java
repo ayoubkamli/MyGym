@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         callbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        LoginButton loginButton = findViewById(R.id.login_button);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -58,6 +58,14 @@ public class LoginActivity extends AppCompatActivity {
                                     final String IdFacebook = object.getString("id");
                                     final String Name = object.getString("first_name");
                                     final String Surname = object.getString("last_name");
+                                    final String Birthday ;
+                                    if (object.has("birthday")) {
+                                        Birthday = object.getString("birthday");
+                                    } else {
+                                        Birthday = "NULL";
+                                    }
+                                    final String Gender = object.getString("gender");
+                                    final String Image_url = "http://graph.facebook.com/" + IdFacebook + "/picture?type=large";
 
                                     // Instantiate the RequestQueue.
                                     String uri = "http://tscmygym.altervista.org/reg.php";
@@ -81,9 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         protected Map<String,String> getParams(){
                                             Map<String,String> params = new HashMap<>();
-                                            params.put("Id",IdFacebook);
-                                            params.put("Name",Name);
-                                            params.put("Surname",Surname);
+                                            params.put("Id", IdFacebook);
+                                            params.put("Name", Name);
+                                            params.put("Surname", Surname);
+                                            params.put("Birthday", Birthday);
+                                            params.put("Gender", Gender);
+                                            params.put("Image_url", Image_url);
+
                                             return params;
                                         }
                                     };
@@ -94,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("Id_Facebook", IdFacebook);
                                     editor.apply();
 
-                                    Intent intent = new Intent(LoginActivity.this, SchedeActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -102,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,first_name,last_name");
+                parameters.putString("fields", "id, first_name, last_name, birthday, gender");
                 request.setParameters(parameters);
                 request.executeAsync();
             }

@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="splashBackground">#000000</color>
+    <color name="ocra">#DE9E08</color>
+    <color name="sfondoBottoni">#FFFFFF</color>
+    <color name="bordiMenu">#00CBAE</color>
+    <color name="antracite">#30333C</color>
 </resources>

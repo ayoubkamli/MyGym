@@ -1,28 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--suppress AndroidDomInspection -->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context="com.example.luca.mygym.MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@drawable/background">
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/text_view_id"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="oppure" />
-        />
+    <TableRow
+        android:gravity="center_horizontal"
+        android:paddingBottom="10dp">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/Profilo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_menu"
+            android:drawableTop="@drawable/ic_profilo"
+            android:paddingTop="20dp"
+            android:text="@string/Profilo"
+            android:textColor="@color/antracite"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            tools:ignore="ButtonStyle" />
 
+        <Button
+            android:id="@+id/Workout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_menu"
+            android:drawableTop="@drawable/ic_workout"
+            android:paddingTop="20dp"
+            android:text="@string/Workout"
+            android:textColor="@color/antracite"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+    </TableRow>
 
-</LinearLayout>
+    <TableRow
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/Stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_menu"
+            android:drawableTop="@drawable/ic_stats"
+            android:paddingTop="20dp"
+            android:text="@string/Statistiche"
+            android:textColor="@color/antracite"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/More"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_menu"
+            android:drawableTop="@drawable/ic_more"
+            android:paddingTop="20dp"
+            android:text="@string/More"
+            android:textColor="@color/antracite"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+    </TableRow>
+</TableLayout>
