@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        }, 0);
+        }, 300);
     }
 
     public boolean isFacebookLoggedIn(){
