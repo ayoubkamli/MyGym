@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +22,13 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,9 +36,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    //Variabili per Facebook
     private CallbackManager callbackManager;
+
+    //Variabili per Google
+    private static final String TAG = "SignInActivity";
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleSignInClient mGoogleSignInClient;
+
+    //Shared Preferences
     public static final String PREFS_USR = "PrefsUser";
+
+    //Variabili globali
+    public String Id_Facebook = "N.D.";
+    public String Id_Google = "N.D.";
+    public String Name = "N.D.";
+    public String Surname = "N.D.";
+    public String Birthday = "N.D.";
+    public String Gender = "N.D.";
+    public String Picture = "N.D.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +63,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         callbackManager = CallbackManager.Factory.create();
+
         LoginButton loginButton = findViewById(R.id.login_button);
+
+        findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -62,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (object.has("birthday")) {
                                         Birthday = object.getString("birthday");
                                     } else {
-                                        Birthday = "NULL";
+                                        Birthday = "null";
                                     }
                                     final String Gender = object.getString("gender");
                                     final String Image_url = "http://graph.facebook.com/" + IdFacebook + "/picture?type=large";
@@ -129,11 +157,59 @@ public class LoginActivity extends AppCompatActivity {
                 // App code
             }
         });
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    // [START handleSignInResult]
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Id_Google = account.getId();
+            Name = account.getGivenName();
+            Surname = account.getFamilyName();
+            Picture = String.valueOf(account.getPhotoUrl());
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
+    // [END handleSignInResult]
+
+    // [START signIn]
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    // [END signIn]
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sign_in_button:
+                signIn();
+                break;
+            case R.id.login_fb:
+                facebookLogin();
+                break;
+        }
     }
 }
