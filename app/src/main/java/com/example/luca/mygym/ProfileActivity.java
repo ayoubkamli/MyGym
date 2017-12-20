@@ -1,5 +1,6 @@
 package com.example.luca.mygym;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +29,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String PREFS_USR = "PrefsUser";
     ImageView ProfilePicture;
 
@@ -41,6 +45,11 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView Gender = findViewById(R.id.Gender);
         final TextView Height = findViewById(R.id.Height);
         final TextView Weight = findViewById(R.id.Weight);
+        ImageButton Homebtn = findViewById(R.id.HomeButton);
+        ImageButton EditProfilebtn = findViewById(R.id.EditButton);
+
+        Homebtn.setOnClickListener(this);
+        EditProfilebtn.setOnClickListener(this);
 
 
         final RequestQueue queue = Volley.newRequestQueue(this);
@@ -93,6 +102,19 @@ public class ProfileActivity extends AppCompatActivity {
             };
             // Add the request to the RequestQueue.
             queue.add(stringRequest);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.HomeButton:
+                Intent profiloIntent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(profiloIntent);
+                break;
+            case R.id.EditButton:
+
+                break;
         }
     }
 
