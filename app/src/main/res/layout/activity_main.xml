@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidDomInspection -->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,28 +14,37 @@
             android:id="@+id/Profilo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingTop="20dp"
+
+
             android:background="@drawable/button_menu"
             android:drawableTop="@drawable/ic_profilo"
-            android:paddingTop="20dp"
-            android:text="@string/Profilo"
+
+            android:text="@string/Profile"
             android:textColor="@color/antracite"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="normal"
             tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/Workout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingTop="20dp"
+
+
             android:background="@drawable/button_menu"
             android:drawableTop="@drawable/ic_workout"
-            android:paddingTop="20dp"
+
             android:text="@string/Workout"
             android:textColor="@color/antracite"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             tools:ignore="ButtonStyle" />
     </TableRow>
@@ -49,28 +57,36 @@
             android:id="@+id/Stats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingTop="20dp"
+
             android:background="@drawable/button_menu"
             android:drawableTop="@drawable/ic_stats"
-            android:paddingTop="20dp"
+
             android:text="@string/Statistiche"
             android:textColor="@color/antracite"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            tools:ignore="ButtonStyle" />
+            tools:ignore="ButtonStyle"/>
 
         <Button
             android:id="@+id/More"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingTop="20dp"
+
             android:background="@drawable/button_menu"
             android:drawableTop="@drawable/ic_more"
-            android:paddingTop="20dp"
+
             android:text="@string/More"
             android:textColor="@color/antracite"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            tools:ignore="ButtonStyle" />
+            tools:ignore="ButtonStyle"/>
     </TableRow>
 </TableLayout>
