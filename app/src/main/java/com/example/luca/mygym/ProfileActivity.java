@@ -1,9 +1,13 @@
 package com.example.luca.mygym;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,23 +21,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfiloActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     public static final String PREFS_USR = "PrefsUser";
+    ImageView ProfilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profilo);
+        setContentView(R.layout.activity_profile);
 
-        final TextView Name = (TextView) findViewById(R.id.Name);
-        final TextView Surame = (TextView) findViewById(R.id.Surname);
-        final TextView Birthday = (TextView) findViewById(R.id.Birthday);
-        final TextView Gender = (TextView) findViewById(R.id.Gender);
-        final TextView Height = (TextView) findViewById(R.id.Height);
-        final TextView Weight = (TextView) findViewById(R.id.Weight);
+        ProfilePicture = findViewById(R.id.ProfilePicture);
+        final TextView Name = findViewById(R.id.Name);
+        final TextView Surname = findViewById(R.id.Surname);
+        final TextView Birthday = findViewById(R.id.Birthday);
+        final TextView Gender = findViewById(R.id.Gender);
+        final TextView Height = findViewById(R.id.Height);
+        final TextView Weight = findViewById(R.id.Weight);
+
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         SharedPreferences prefs = getSharedPreferences(PREFS_USR, MODE_PRIVATE);
@@ -50,15 +58,21 @@ public class ProfiloActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             // Display the first 500 characters of the response string.
-                            Log.i("cazzo", response);
+                            Log.i("cazzoresp", response);
 
                             try {
                                 JSONArray array = new JSONArray(response);
 
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject obj = (JSONObject) array.get(i);
-                                    Name.setText("Name: " + obj.getString("Nome"));
-
+                                    Name.setText("Name: " + obj.getString("Nome").toUpperCase());
+                                    Surname.setText("Surname: " + obj.getString("Cognome").toUpperCase());
+                                    Birthday.setText("Birthday: " + obj.getString("Nascita").toUpperCase());
+                                    Gender.setText("Gender: " + obj.getString("Sesso").toUpperCase());
+                                    Height.setText("Height: " + obj.getString("Altezza").toUpperCase());
+                                    Weight.setText("Weight: " + obj.getString("Peso").toUpperCase());
+                                   // new DownloadImageTask((ImageView) findViewById(R.id.ProfilePicture))
+                                            //.execute("https://graph.facebook.com/me/picture?access_token=<" + AccessToken.getCurrentAccessToken().toString() + ">");
                                 }
                             } catch (JSONException e1) {
                                 e1.printStackTrace();
@@ -79,6 +93,33 @@ public class ProfiloActivity extends AppCompatActivity {
             };
             // Add the request to the RequestQueue.
             queue.add(stringRequest);
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+                Log.i("cazzosi", "NON SAPREI");
+            } catch (Exception e) {
+                Log.e("cazzo", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+            Log.i("cazzosi", "sto cambiando immagine");
         }
     }
 }

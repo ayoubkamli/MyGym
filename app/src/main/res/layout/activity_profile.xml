@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidDomInspection -->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ocra">
+
+    <TableRow
+        android:gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="50dp">
+        <ImageView
+            android:id="@+id/ProfilePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/name"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/surname"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/birthday"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/gender"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/height"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/Weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/weight"
+            android:textColor="@color/antracite"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+<RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/HomeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp"
+
+        android:src="@drawable/homebtn"
+        android:background="@color/ocra"/>
+
+    <ImageButton
+        android:id="@+id/EditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="60dp"
+        android:layout_marginEnd="60dp"
+
+        android:src="@drawable/profile_edit_button"
+        android:background="@color/ocra"/>
+
+</RelativeLayout>
+
+
+
+</TableLayout>

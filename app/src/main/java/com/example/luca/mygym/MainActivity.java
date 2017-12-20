@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener  {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Profile:
-                Intent profiloIntent = new Intent(MainActivity.this, ProfiloActivity.class);
+                Intent profiloIntent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(profiloIntent);
                 break;
             case R.id.Workout:
@@ -37,11 +37,11 @@ public class MainActivity extends Activity implements View.OnClickListener  {
                 startActivity(schedeIntent);
                 break;
             case R.id.Stats:
-                //Intent profiloIntent = new Intent(MainActivity.this, ProfiloActivity.class);
+                //Intent profiloIntent = new Intent(MainActivity.this, ProfileActivity.class);
                 //startActivity(profiloIntent);
                 break;
             case R.id.More:
-                //Intent profiloIntent = new Intent(MainActivity.this, ProfiloActivity.class);
+                //Intent profiloIntent = new Intent(MainActivity.this, ProfileActivity.class);
                 //startActivity(profiloIntent);
                 break;
         }
