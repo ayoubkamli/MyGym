@@ -1,18 +1,29 @@
 <resources>
+    <!-- Stringhe generali -->
     <string name="app_name">MyGym</string>
     <string name="facebook_app_id">338514703291115</string>
     <string name="fb_login_protocol_scheme">fb338514703291115</string>
-    <string name="title_activity_schede">SchedeActivity</string>
-    <string name="Description_splash">Un cazzutissimo pitbull</string>
-    <string name="Oppure_login">oppure</string>
-    <string name="Profilo">PROFILO</string>
+
+    <!-- SplashActivity -->
+    <string name="Description_splash">A fucking pitbull</string>
+
+    <!-- LoginActivity -->
+    <string name="Oppure_login">or</string>
+
+    <!-- MainActivity -->
+    <string name="Profile">PROFILE</string>
     <string name="Workout">WORKOUT</string>
     <string name="Statistiche">STATS</string>
     <string name="More">MORE</string>
+
+    <!-- ProfileActivity -->
     <string name="name">Name:</string>
     <string name="surname">Surname:</string>
     <string name="birthday">Birthday:</string>
     <string name="gender">Gender:</string>
     <string name="height">Height:</string>
     <string name="weight">Weight:</string>
+
+    <!-- WorkoutActivity -->
+    <string name="title_activity_schede">SchedeActivity</string>
 </resources>
