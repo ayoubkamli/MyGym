@@ -47,7 +47,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProfiloActivity"
+            android:name=".ProfileActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
@@ -58,8 +58,6 @@
             android:name=".LoginActivity" />
         <activity
             android:name=".EserciziActivity" />
-        <activity
-            android:name=".DescrizioneEsercizioActivity" />
 
     </application>
 

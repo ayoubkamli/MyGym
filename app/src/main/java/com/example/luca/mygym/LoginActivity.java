@@ -1,5 +1,6 @@
 package com.example.luca.mygym;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,7 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //Variabili globali
     public HashMap<String, String> Profile = new HashMap<>();
+    String uri = "http://tscmygym.altervista.org/LoginActivity.php";
     public Bitmap Picture;
+    public Boolean ChangeActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +97,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Profile.put("Birthday", "N.D.");
             Profile.put("Gender", "N.D.");
             //Picture = String.valueOf(account.getPhotoUrl());
+            sendDB();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
+    }
+
+    private void sendDB() {
+        Context context = getApplicationContext();
+        VolleyService volleyservice = new VolleyService();
+        volleyservice.getString (context, uri, Profile, new VolleyCallback() {
+                    @Override
+                    public void onSuccess(String data) {
+                        Log.i("cazzoResume", data);
+                        if (data.contains("TRUE")) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, data,
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 
     private void signIn() {
@@ -123,7 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Profile.put("Birthday", response.getJSONObject().getString("birthday"));
                             }
                             Profile.put("Gender", response.getJSONObject().getString("gender"));
-
                             /*try {
                                 URL imageUrl = new URL("https://graph.facebook.com/" + Id_Facebook + "/picture?type=large");
                                 Picture = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
@@ -169,40 +192,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         });
                 break;
         }
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        // Instantiate the RequestQueue.
-        String uri = "http://tscmygym.altervista.org/reg.php";
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, uri,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.i("cazzoresp", response);
-                        Log.i("cazzoresp", String.valueOf(Profile));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("cazzono", "cazzo");
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                return Profile;
-            }
-        };
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-
-        SharedPreferences.Editor editor = getSharedPreferences(PREFS_USR, MODE_PRIVATE).edit();
+        /*SharedPreferences.Editor editor = getSharedPreferences(PREFS_USR, MODE_PRIVATE).edit();
         editor.putString("Id_Facebook", Profile.get("Id_Facebook"));
         editor.putString("Id_Google", Profile.get("Id_Google"));
-        editor.apply();
-
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+        editor.apply();*/
     }
 }
